@@ -41,7 +41,7 @@
      \label{fig:BoundaryLayerThicknessFromLE}
 \end{figure}
 
-The coefficient of drag from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
+\noindent The coefficient of drag from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
 
 \begin{figure}[htpb]
     \centering
@@ -52,7 +52,7 @@ The coefficient of drag from the theoretical calculations and experimental data 
      \label{fig:DragCoefficientVsDisToLE}
 \end{figure}
 
-The coefficient of local shear stress from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
+\noindent The coefficient of local shear stress from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
 
 \begin{figure}[htpb]
     \centering
@@ -63,7 +63,7 @@ The coefficient of local shear stress from the theoretical calculations and expe
      \label{fig:LocalShearStressVsDisToLE}
 \end{figure}
 
-Using \autoref{eq:Re} and the subsequent parameters, we find the Reynolds number of about \num{1.322e5} for the airfoil wake measurements.
+\noindent Using \autoref{eq:Re} and the subsequent parameters, we find the Reynolds number at the range from 0 to 65 inches in \autoref{fig:ReVsD}. The length values are converted into meters to make the Reynold's Number unit-less. 
 
 \begin{equation}\label{eq:Re}
     Re = \frac{\rho V L}{\mu}
@@ -72,7 +72,15 @@ Using \autoref{eq:Re} and the subsequent parameters, we find the Reynolds number
 \begin{enumerate}
     \item[] $\rho = \qty{1.225}{\kilogram\per\meter^3}$
     \item[] $\mu = \qty{18.18e-06}{\pascal\second}$
-    \item[] $L = \qty{0.101}{\meter}$
-    \item[] $V = \qty{19.4}{\meter\per\second}$
-    \item[] $Re = \num{1.322e5}$
+    \item[] $L = \qtyrange{0}{65}{in}$
+    \item[] $V = \qty{11.25}{\meter\per\second}$
 \end{enumerate}
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Reynold's Number vs. Distance from LE.svg}
+     \caption
+     [Reynold's Number vs. Distance from LE]
+     {Reynold's Number vs. Distance from LE.}
+     \label{fig:ReVsD}
+\end{figure}
