@@ -1,3 +1,73 @@
 \chapter{Methodology}
 \label{cp:methodology}
-This is the methodology section.
+\section{Apparatus}
+A flat plate is positioned in the wind tunnel test chamber as seen in \autoref{fig: OpenCircuitWindTunnel}. Downstream of the flat plate is a pressure rake, seen in \autoref{fig: PressureRake}. The data was collected using 3 DSA units for the pressure measurements. The computer configuration of this can be seen in \autoref{fig: DataCollectionTool}.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/IMG_0004.jpeg}
+    \caption[Picture of the test section]{Picture of the Test Section}
+    \label{fig: OpenCircuitWindTunnel}
+\end{figure}
+
+
+\section{Procedures}
+\begin{enumerate}
+\item Set the wind tunnel speed to 10 m/s
+\item Take pressure measurements at 10 streamwise positions specified by the TA %Couldn't remember what the exact measurements were, change as needed
+% the measurements were 1-10,15,20,25,30,35,40,45,50,55,60,65 inches
+\item After each adjustment, acquire and save the data to a data file
+\end{enumerate}
+
+\section{Derivations}
+
+The voltage outputs obtained by computer software can be converted to dynamic pressures, which can then be related to velocities. The local shear stress coefficient is defined in \autoref{eq:shear_stress_coefficient}. The momentum thickness is defined in \autoref{eq:momentum_thickness}. Using \autoref{eq:momentum_thickness} and the data we collected, the momentum thickness can be calculated for each of the distances \citep{lab8-manual}.
+
+\begin{equation} \label{eq:shear_stress_coefficient}
+    C_f = \frac{\tau_w}{1/2 \rho U_e^2}
+\end{equation}
+
+\begin{equation} \label{eq:momentum_thickness}. 
+    \theta = \int_0^Y\frac{u}{U_e}\left(1 - \frac{u}{U_e}\right)dy
+\end{equation}
+
+\noindent We can then relate the local shear stress coefficient to the momentum thickness using \autoref{eq:shear_to_momentum}. 
+
+\begin{equation} \label{eq:shear_to_momentum}
+    C_f = 2\frac{d\theta}{dx}
+\end{equation}
+
+\noindent However, for the purpose of comparison, \autoref{eq:shear_to_momentum} can be empirically related to \autoref{eq:empirical_shear_stress}.
+
+\begin{equation} \label{eq:empirical_shear_stress}
+    C_f = \frac{0.0583}{Re_x^{0.2}}
+\end{equation}
+
+\noindent The coefficient of drag is also able to be calculated and related to the momentum thickness. \autoref{eq:coefficient_of_drag} defines the coefficient of drag, where \gls{D} is drag force and \gls{A} is the surface area. The coefficient of drag can be related to momentum thickness, as shown in \autoref{eq:coeff_drag_momentum_thickness}, where \gls{L} is the length of the plate upstream of the measurement point. 
+
+
+\begin{equation} \label{eq:coefficient_of_drag}
+    C_d = \frac{D}{1/2 \rho U_e^2 A}
+\end{equation}
+
+\begin{equation} \label{eq:coeff_drag_momentum_thickness}
+    C_d = \frac{2\theta}{L}
+\end{equation}
+
+\noindent The coefficient of drag can also be estimated, as seen in \autoref{eq:coeff_drag_estimation}.
+
+\begin{equation} \label{eq:coeff_drag_estimation}
+    C_d = \frac{.074}{Re_L^{0.2}}
+\end{equation}
+
+\noindent The following equations (\autoref{eq:boundary_layer_laminar} and \autoref{eq:boundary_layer_turbulent}) are theoretical estimations of the boundary layer thickness at a distance \gls{x} over a flat plate.
+
+\begin{equation} \label{eq:boundary_layer_laminar}
+    \frac{\delta}{x} = \frac{5.0}{\sqrt{\text{Re}_x}}
+\end{equation}
+
+\begin{equation} \label{eq:boundary_layer_turbulent}
+    \frac{\delta}{x} = \frac{0.37}{\text{Re}_x^\frac{1}{5}}
+\end{equation}
+
+\noindent Assuming transition occurs at $Re_x$ = $10^5$, and using  \autoref{eq:boundary_layer_laminar} and \autoref{eq:boundary_layer_turbulent}, we can estimate the thickness of the boundary layer at various locations.
