@@ -27,11 +27,11 @@ The voltage outputs obtained by computer software can be converted to dynamic pr
     C_f = \frac{\tau_w}{1/2 \rho U_e^2}
 \end{equation}
 
-\begin{equation} \label{eq:momentum_thickness}. 
+\begin{equation} \label{eq:momentum_thickness}
     \theta = \int_0^Y\frac{u}{U_e}\left(1 - \frac{u}{U_e}\right)dy
 \end{equation}
 
-\noindent We can then relate the local shear stress coefficient to the momentum thickness using \autoref{eq:shear_to_momentum}. 
+\noindent  The integral in \autoref{eq:momentum_thickness} was determined using the midpoint Riemann sum between the top and bottom pressure rake taps. The distance between each pressure tap is \num{4}\unit{\text{mm}}. To calculate the local shear stress coefficient, we used its relationship to the momentum thickness in \autoref{eq:shear_to_momentum}. In MATLAB, the \textit{gradient} command is used to estimate $\frac{d\theta}{dx}$.
 
 \begin{equation} \label{eq:shear_to_momentum}
     C_f = 2\frac{d\theta}{dx}

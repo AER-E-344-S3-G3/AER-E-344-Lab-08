@@ -1,3 +1,78 @@
 \chapter{Results}
 \label{cp:results}
-This is the results section.
+
+\noindent \autoref{fig:YdelvsUUinfat1in}, \autoref{fig:YdelvsUUinfat9in}, and \autoref{fig:YdelvsUUinfat25in} show the $Y/\delta$ ratio vs. $U/U_{inf}$ ratio at different distances from the leading edge. More plots of $Y/\delta$ vs. $U/U_{inf}$ are located in \autoref{sec:additional_figures}. The 10 locations chosen for analysis are at [1, 3, 5, 7, 9, 15, 25, 35, 45, 55] inches. The x-axis increases as the vertical distance from the flat plate increases.
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Ydelta vs. UUinf at 1 in.svg}
+     \caption
+     [Ydelta vs. UUinf at 1 in]
+     {Ydelta vs. UUinf at 1 in}
+     \label{fig:YdelvsUUinfat1in}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Ydelta vs. UUinf at 9 in.svg}
+     \caption
+     [Ydelta vs. UUinf at 9 in]
+     {Ydelta vs. UUinf at 9 in}
+     \label{fig:YdelvsUUinfat9in}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Ydelta vs. UUinf at 25 in.svg}
+     \caption
+     [Ydelta vs. UUinf at 25 in]
+     {Ydelta vs. UUinf at 25 in}
+     \label{fig:YdelvsUUinfat25in}
+\end{figure}
+
+\noindent \autoref{fig:BoundaryLayerThicknessFromLE} contains the graphs of the theoretical boundary layer at the laminar region and turbulent regions and the calculated thickness from the lab data. The momentum thickness, $\theta$, at the chosen stream-wise distances are also plotted with their values on the right y-axis.
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Boundary Layer Thickness vs. Distance from LE.svg}
+     \caption
+     [Boundary Layer Thickness vs Distance from LE]
+     {Boundary Layer Thickness vs Distance from LE}
+     \label{fig:BoundaryLayerThicknessFromLE}
+\end{figure}
+
+The coefficient of drag from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Drag Coefficient vs. Distance from LE.svg}
+     \caption
+     [Drag Coefficient vs Distance from Le]
+     {Drag Coefficient vs Distance from Le}
+     \label{fig:DragCoefficientVsDisToLE}
+\end{figure}
+
+The coefficient of local shear stress from the theoretical calculations and experimental data distances are located in  \autoref{fig:DragCoefficientVsDisToLE}. 
+
+\begin{figure}[htpb]
+    \centering
+     \includesvg[width=0.75\linewidth]{Figures/Local Shear Stress Coefficient vs. Distance from LE.svg}
+     \caption
+     [Local Shear Stress Coefficient vs Distance from Le]
+     {Local Shear Stress Coefficient vs Distance from Le}
+     \label{fig:LocalShearStressVsDisToLE}
+\end{figure}
+
+Using \autoref{eq:Re} and the subsequent parameters, we find the Reynolds number of about \num{1.322e5} for the airfoil wake measurements.
+
+\begin{equation}\label{eq:Re}
+    Re = \frac{\rho V L}{\mu}
+\end{equation}
+
+\begin{enumerate}
+    \item[] $\rho = \qty{1.225}{\kilogram\per\meter^3}$
+    \item[] $\mu = \qty{18.18e-06}{\pascal\second}$
+    \item[] $L = \qty{0.101}{\meter}$
+    \item[] $V = \qty{19.4}{\meter\per\second}$
+    \item[] $Re = \num{1.322e5}$
+\end{enumerate}
