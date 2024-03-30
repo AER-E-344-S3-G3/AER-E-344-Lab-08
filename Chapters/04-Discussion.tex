@@ -2,23 +2,22 @@
 \label{cp:discussion}
 \section{Boundary Layer Analysis}
 
-Given the random nature of the boundary layer graph as seen in \autoref{fig:BoundaryLayerThicknessFromLE}, there is clearly an issue in our lab. The sources of this error are discussed in more detail in \autoref{sec:error}. Next, the Y/delta vs. U/U$\infty$ at distances of 10 inches or less, we noticed the boundary layer was much further from the plate surface than expected. The boundary layer was estimated at the distance where the velocity is 99\% of the free-stream velocity. The graphs would tend to level off sooner, indicating that the boundary layer was starting there. At distances that were greater than 10 inches, the 99\% estimation was followed more closely. 
+Given the random nature of the boundary layer graph as seen in \autoref{fig:BoundaryLayerThicknessFromLE}, there is clearly an issue in our lab. The sources of this error are discussed in more detail in \autoref{sec:error}. Next, the Y/delta vs. U/U$\infty$ at distances of 10 inches or less, we noticed the boundary layer was much further from the plate surface than expected. The U/U$\infty$ tend to level off a few inches after the leading edge before increasing again, pushing the boundary layer higher (see \autoref{fig:YdelvsUUinfat1in} or \autoref{fig:YdelvsUUinfat9in}). The boundary layer was estimated at the distance where the velocity is 99\% of the free-stream velocity; however, if we estimate it where U/U$\infty$ begins to level off, the boundary layer may match the theoretical values. At distances that were greater than 10 inches, the 99\% estimation seems more valid (\autoref{fig:YdelvsUUinfat25in}). 
 
 \section{Coefficient of Drag and Local Shear Stress}
-
+The calculated coefficient of drag aligns with the theoretical relation, at distances further downstream from the leading edge. The given empirical relation (\autoref{eq:coeff_drag_estimation}) and calculated coefficient decrease to similar values of about \num{0.004} nearing a distance of \num{70}\unit{in.}. The theoretical coefficient of local shear stress resembles the theoretical coefficient of drag; however, the calculate coefficient of local shear stress from the experimental data does not. 
 
 \section{Sources of Error} \label{sec:error}
 
 Our data deviates from the theoretical predictions, indicating there might have been considerable sources of error either in the experimental setup or the data analysis process. Although we cannot assert the reliability of our analysis with full confidence, further validation with additional data sets over more time would be required to validate our process.
 
-We suspect the primary discrepancies likely stem from faulty pressure taps. For example, in this lab, we know that pressure taps 2 and 22 were not working because the TAs told us to get rid of that data. Another discrepancy we could have easily had was one of the plastic tubes got pinched so it would not collect the data.
- 
-For the other graphs that compared the Y/delta vs U/U$\infty$, the data looked more like how we would expect it to look. Where it would climb linearly and then eventually level off, indicating the boundary layer. 
+We suspect the primary discrepancies likely stem from faulty pressure taps. For example, in this lab, we know that pressure taps 2 and 22 were not working because the TAs told us to get rid of that data. Another discrepancy we could have easily had was one of the plastic tubes got pinched so it would not collect the data. Data was interpolated at pressure taps with known issues.
+
+Another discrepancy that we had was with the 99\% rule and that it may not be the best prediction of the boundary layer for the measurements closer to the leading edge. Due to the strange behavior of U/U$\infty$ at distances near the leading edge, an boundary layer estimation at 95\% may have been a more accurate measurement compared to the theoretical calculations. For the other graphs that compared the Y/delta vs U/U$\infty$, the data looked more like how we would expect it to look. Where it would climb almost linearly and then eventually level off, indicating the boundary layer. 
 
 \section{Future Work} \label{sec:FutureWork}
 
-Due to the errors in the data, we weren't able to accurately show the boundary layers. We cannot prove definitively the source
-of our error, but we think it is most likely due to how we collected the data. To improve our results, we would take the following corrective measures:
+Due to the errors in the data, we weren't able to accurately show the boundary layers. We cannot prove definitively the source of our error, but we think it is most likely due to how we collected the data. To improve our results, we would take the following corrective measures:
 
 \begin{enumerate}
     \item Test our analysis script on reliable data and compare the results to the expected values—fixing bugs and making changes as necessary.

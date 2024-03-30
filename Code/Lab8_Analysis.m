@@ -131,7 +131,7 @@ grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Shear Stress Coefficient
-cf = gradient(theta,x* m_to_in^-1);
+cf =  2 * gradient(theta) ./ gradient(x*39.3700787^-1);
 cf_rel = [(0.0583 ./ Re_laminar.^0.2), (0.0583 ./ Re_turbulent.^0.2)];
 % tau_w = zeros(n_x,n_taps);
 % cf = zeros(n_x,n_taps);
@@ -147,7 +147,7 @@ title_str = "Local Shear Stress Coefficient vs. Distance from LE";
 title(title_str);
 xlabel("x [in]");
 ylabel("c_{f}")
-legend({'Experimental','Emperical Relation'},"Location",'best')
+legend({'Experimental','Empirical Relation'},"Location",'best')
 grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
 
@@ -162,6 +162,6 @@ title_str = "Drag Coefficient vs. Distance from LE";
 title(title_str);
 xlabel("x [in]");
 ylabel("C_{d}")
-legend({'Experimental','Emperical Relation'},"Location",'best')
+legend({'Experimental','Empirical Relation'},"Location",'best')
 grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
