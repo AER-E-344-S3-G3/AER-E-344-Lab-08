@@ -1,11 +1,13 @@
 clear, clc, close all
 %% Kyle Ostendorf Lab 8
 %% Constants
+figure_dir = "../Figures/";
+
 x = [0:10,15:5:65];
 n_x = length(x); % number of tests
 taps = 1:38;
 n_taps = length(taps); % number of taps
-bad_taps = [1,2,21,22,35];  
+bad_taps = [1,2,21,22,34,35];  
 good_taps = taps;
 good_taps(bad_taps) = [];
 d_m = .004; % [m]
@@ -31,7 +33,7 @@ i_total_p = zeros(n_x, n_taps);
 for i = 1:n_x
 good_data = total_p(i,good_taps);
 interp_data(i,:) = interp1(good_taps,good_data,bad_taps,"linear","extrap");
-i_total_p(i,:) = [interp_data(i,1:2),good_data(1:18),interp_data(i,3:4),good_data(19:30),interp_data(i,5),good_data(31:33)];
+i_total_p(i,:) = [interp_data(i,1:2),good_data(1:18),interp_data(i,3:4),good_data(19:29),interp_data(i,5:6),good_data(30:32)];
 end
 
 %% Velocity
@@ -46,6 +48,7 @@ for i = 1:n_x
     end
 end
 
+
 %% Delta Estimations
 delta = zeros(1,n_x);
 y_delta = zeros(n_x,n_taps);
@@ -57,6 +60,7 @@ for i = 1:n_x
     end
     delta(i) = d_m*(delta_loc-1);
     y_delta(i,:) = y / delta(i);
+
 end
 
 %% Plot y_delta vs. U_Uinf
@@ -74,6 +78,7 @@ for i  = chosen
     ylabel("U/U_{inf}");
     grid on;
     legend({'Data', '99% of U_{inf}'},"Location",'southeast')
+    saveas(gcf, figure_dir + "Ydelta vs. UUinf at "+ x(i) +" in" + ".svg");
 end
 
 %% Displacement and Momentum thickness
@@ -81,12 +86,12 @@ theta = zeros(1,n_x);
 delta_star = zeros(1,n_x);
 for i = 1:n_x
     for j = 1:n_taps-1
-        f1 = U(i,j)/U_inf(i)*(1- U(i,j)/U_inf(i));
-        f2 = U(i,j+1)/U_inf(i)*(1-U(i,j+1)/U_inf(i));
+        f1 = U_Uinf(i,j)*(1- U_Uinf(i,j));
+        f2 = U_Uinf(i,j)*(1- U_Uinf(i,j));
         theta(i) = theta(i) + d_m*((f1 + f2)/2);
 
-        f3 = (1 - U(i,j)/U_inf(i));
-        f4 = (1 - U(i,j+1)/U_inf(i));
+        f3 = (1 - U_Uinf(i,j));
+        f4 = (1 - U_Uinf(i,j));
         delta_star(i) = delta_star(i) + d_m*((f3 + f4)/2);
     end
 end
@@ -105,7 +110,7 @@ boundary_layer_laminar = 5.0 * x_laminar ./ sqrt(Re_laminar); % [in]
 boundary_layer_turbulent = 0.37 * x_turbulent ./ Re_turbulent.^(1 / 5); % [in]
 
 % Output
-figure(n_taps+1);
+figure(23);
 yyaxis left
 plot(x_laminar, boundary_layer_laminar*m_to_in^-1);
 hold on;
@@ -118,43 +123,45 @@ yyaxis right
 plot(x(chosen), theta(chosen));
 ylabel("\theta");
 hold off
-title("Boundary Layer Thickness vs. Distance from LE");
+title_str = "Boundary Layer Thickness vs. Distance from LE";
+title(title_str);
 xlabel("x [in]");
 legend({'Laminar','Turbulent','Experimental \delta','Experimental \theta'},"Location",'southeast')
 grid on;
+saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Shear Stress Coefficient
 cf = gradient(theta,x);
 cf_rel = [(0.0583 ./ Re_laminar.^0.2), (0.0583 ./ Re_turbulent.^0.2)];
-% Probably the wrong way to do cf 
 % tau_w = zeros(n_x,n_taps);
 % cf = zeros(n_x,n_taps);
 % for i = 1:n_x
 %     tau_w(i,:) = mu * gradient(U(i,:),y);
 %     cf(i,:) = tau_w(i,:) / (1/2 * rho * U_inf(i)^2);
 % end
-figure(n_taps +2)
+figure(24)
 plot(x,cf)
 hold on
 plot([x_laminar, x_turbulent], cf_rel)
-title("Local Shear Stress Coefficient vs. Distance from LE");
+title_str = "Local Shear Stress Coefficient vs. Distance from LE";
+title(title_str);
 xlabel("x [in]");
 ylabel("c_{f}")
 legend({'Experimental','Emperical Relation'},"Location",'best')
 grid on;
+saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Drag Coefficient
 Cd_rel = [(0.074 ./ Re_laminar.^0.2), (0.074 ./ Re_turbulent.^0.2)];
 Cd = 2 * theta ./ x;
-figure(n_taps +3)
+figure(25)
 plot(x,Cd)
 hold on
 plot([x_laminar, x_turbulent], Cd_rel)
-title("Drag Coefficient vs. Distance from LE");
+title_str = "Drag Coefficient vs. Distance from LE";
+title(title_str);
 xlabel("x [in]");
 ylabel("C_{d}")
 legend({'Experimental','Emperical Relation'},"Location",'best')
 grid on;
-
-% gg ez need to add svg save to each plot and fix figure numbering
-% and probably some calculations cause stuff be wack
+saveas(gcf, figure_dir + title_str + ".svg");
