@@ -131,7 +131,7 @@ grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Shear Stress Coefficient
-cf = gradient(theta,x);
+cf = gradient(theta,x* m_to_in^-1);
 cf_rel = [(0.0583 ./ Re_laminar.^0.2), (0.0583 ./ Re_turbulent.^0.2)];
 % tau_w = zeros(n_x,n_taps);
 % cf = zeros(n_x,n_taps);
@@ -153,7 +153,7 @@ saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Drag Coefficient
 Cd_rel = [(0.074 ./ Re_laminar.^0.2), (0.074 ./ Re_turbulent.^0.2)];
-Cd = 2 * theta ./ x;
+Cd = 2 * theta ./ (x* m_to_in^-1);
 figure(25)
 plot(x,Cd)
 hold on
