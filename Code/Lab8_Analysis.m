@@ -16,7 +16,7 @@ y = taps * d_m;
 mu = 1.8e-5; % [N*s/m^2]
 rho = 1.225; % [kg/m^3]
 IN0 = readmatrix("0in.csv");
-chosen = 2:2:20; %% Data chosen to be graphed
+chosen = 2:2:21; %% Data chosen to be graphed
 %% Reading Cell array
 total_p = zeros(n_x, n_taps);
 static_p = zeros(n_x, 1);
@@ -98,29 +98,29 @@ end
 
 %% Theoretical vs Experimental delta
 V_inf = mean(U_inf); % [m/s] <-- this is for 10 Hz
-Re_transition = 10^5; % []
+Re_transition = 5*10^5; % []
 m_to_in = 39.3700787;
 x_transition = Re_transition * mu / (rho * V_inf); % [m]
 x_transition = x_transition * m_to_in; % [in]
 x_laminar = 0 : 0.1 : x_transition; % [in]
 x_turbulent = x_transition : 0.1 : 70; % [in]
-Re_laminar = rho * V_inf * (x_laminar * m_to_in^-1) / mu; % []
-Re_turbulent = rho * V_inf * (x_turbulent * m_to_in^-1) / mu; % []
+Re_laminar = rho * V_inf * (x_laminar* 39.3700787^-1) / mu; % []
+Re_turbulent = rho * V_inf * (x_turbulent* 39.3700787^-1) / mu; % []
 boundary_layer_laminar = 5.0 * x_laminar ./ sqrt(Re_laminar); % [in]
 boundary_layer_turbulent = 0.37 * x_turbulent ./ Re_turbulent.^(1 / 5); % [in]
 
 % Output
 figure(23);
 yyaxis left
-plot(x_laminar, boundary_layer_laminar*m_to_in^-1);
+plot(x_laminar, boundary_layer_laminar*(m_to_in^-1));
 hold on;
-plot(x_turbulent, boundary_layer_turbulent*m_to_in^-1);
+plot(x_turbulent, boundary_layer_turbulent*(m_to_in^-1));
 hold on
-plot(x(chosen),delta(chosen));
+plot(x,delta);
 hold on
 ylabel("\delta [m]");
 yyaxis right
-plot(x(chosen), theta(chosen));
+plot(x, theta);
 ylabel("\theta");
 hold off
 title_str = "Boundary Layer Thickness vs. Distance from LE";
@@ -131,7 +131,7 @@ grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Shear Stress Coefficient
-cf =  2 * gradient(theta) ./ gradient(x*39.3700787^-1);
+cf = 2 * gradient(theta) ./ gradient(x*39.3700787^-1);
 cf_rel = [(0.0583 ./ Re_laminar.^0.2), (0.0583 ./ Re_turbulent.^0.2)];
 % tau_w = zeros(n_x,n_taps);
 % cf = zeros(n_x,n_taps);
@@ -153,7 +153,7 @@ saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Drag Coefficient
 Cd_rel = [(0.074 ./ Re_laminar.^0.2), (0.074 ./ Re_turbulent.^0.2)];
-Cd = 2 * theta ./ (x* m_to_in^-1);
+Cd = 2 .* theta ./ (x.*39.3700787^-1);
 figure(25)
 plot(x,Cd)
 hold on
@@ -163,5 +163,15 @@ title(title_str);
 xlabel("x [in]");
 ylabel("C_{d}")
 legend({'Experimental','Empirical Relation'},"Location",'best')
+grid on;
+saveas(gcf, figure_dir + title_str + ".svg");
+
+%% Re Graph
+figure(26)
+plot([x_laminar, x_turbulent],[Re_laminar,Re_turbulent])
+ylabel("Re");
+xlabel("x [in]")
+title_str = "Reynold's Number vs. Distance from LE";
+title(title_str);
 grid on;
 saveas(gcf, figure_dir + title_str + ".svg");
